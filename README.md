@@ -1,0 +1,70 @@
+### 1. Store in Index.js
+
+1. Store, action, reducer, dispatch in *index.js*
+
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+
+
+import { createStore } from 'redux';
+
+
+
+// Store -> Globlized state
+
+// Action increment
+const increment = () => {
+    return {
+        type: 'INCREMENT'
+    }
+}
+
+
+const decrement = () => {
+    return {
+        type: 'DECREMENT'
+    }
+}
+
+// Reducer
+
+
+const counter = (state = 0, action) => {
+    switch (action.type) {
+        case "INCREMENT":
+            return state + 1;
+        case "DECREMENT":
+            return state - 1;
+    }
+};
+
+//store
+
+let store = createStore(counter);
+
+// display in console
+
+store.subscribe(() => console.log(store.getState()));
+
+
+// Dispatch  (to execute action)
+
+
+
+store.dispatch(increment());
+
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+
+```
